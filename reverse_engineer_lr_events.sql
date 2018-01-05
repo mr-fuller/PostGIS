@@ -28,7 +28,7 @@ SELECT
   locations_gid,
   streets_gid,
   streets_nlfid
-  ST_LineLocatePoint(streets_geom, subways_geom) AS measure,
+  ST_LineLocatePoint(streets_geom, locations_geom) AS measure,
   streets_ctl_begin,
   streets_ctl_end,
   distance
@@ -51,4 +51,4 @@ update table set emp = ctl_pt - 0.001 where ctl_pt = streets_ctl_end;
 update table set bmp = emp + 0.001 where ctl_pt = streets_ctl_end;
 
 -- Primary keys are useful for visualization softwares
-ALTER TABLE los_2018_def_events ADD PRIMARY KEY (subways_gid);
+ALTER TABLE los_2018_def_events ADD PRIMARY KEY (locations_gid);
